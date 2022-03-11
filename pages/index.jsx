@@ -1,10 +1,7 @@
-import { Appbar } from '@components/common';
+import { Layout } from '@components/common';
 
-const Home = () => (
-  <>
-    <Appbar />
-    <div>Hello</div>
-  </>
-);
+const Home = () => <div>Hello</div>;
+
+Home.Layout = Layout;
 
 export default Home;
