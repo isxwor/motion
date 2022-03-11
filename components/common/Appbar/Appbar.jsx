@@ -22,8 +22,6 @@ const Appbar = () => {
 };
 
 const Root = styled('div', {
-  '--padding': '.5rem',
-
   background: 'grey',
   paddingLeft: 'var(--padding)',
   display: 'flex',
