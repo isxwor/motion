@@ -43,9 +43,10 @@ const RangeInput = styled('input', ({ $percent }) => ({
   '::-webkit-slider-thumb': {
     appearance: 'none',
     background: 'var(--color-text)',
-    height: '1.2em',
-    width: '1.2em',
+    height: '1.5em',
+    width: '1.5em',
     borderRadius: '50%',
+    cursor: 'pointer',
   },
 }));
 
