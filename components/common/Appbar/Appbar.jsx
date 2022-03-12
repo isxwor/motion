@@ -1,15 +1,14 @@
-import { useState } from 'react';
-
 import { styled } from 'styletron-react';
 
+import { useUI } from '@components/ui/context';
 import { Container } from '@components/ui';
 import { Play, Pause } from '@components/icons';
 
 const Appbar = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { isAnimating, setIsAnimating } = useUI();
 
   const handleClick = () => {
-    setIsPlaying(!isPlaying);
+    setIsAnimating(!isAnimating);
   };
 
   return (
@@ -23,7 +22,7 @@ const Appbar = () => {
       >
         <h3>Motion</h3>
         <IconButton type='button' onClick={handleClick}>
-          {isPlaying ? <Pause /> : <Play />}
+          {isAnimating ? <Pause /> : <Play />}
         </IconButton>
       </Container>
     </FullBleed>

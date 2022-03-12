@@ -3,6 +3,8 @@ import '@styles/globals.css';
 import { Provider as StyletronProvider } from 'styletron-react';
 import styletron from '@lib/styletron';
 
+import { UIProvider } from '@components/ui/context';
+
 // eslint-disable-next-line react/jsx-no-useless-fragment
 const Noop = ({ children }) => <>{children}</>;
 
@@ -11,9 +13,11 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <StyletronProvider value={styletron}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <UIProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </UIProvider>
     </StyletronProvider>
   );
 };
