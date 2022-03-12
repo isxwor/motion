@@ -1,6 +1,7 @@
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
+import { Card } from '@components/ui';
 
 const Home = () => (
   <Grid>
@@ -21,16 +22,6 @@ const Grid = styled('div', {
     gridTemplateColumns: '2fr 1fr',
   },
 });
-
-const mapElevationToBackground = {
-  0: 'var(--color-background-card)',
-  1: 'var(--color-background-card-elevated)',
-};
-
-const Card = styled('div', ({ $elevation }) => ({
-  background:
-    mapElevationToBackground[$elevation] || mapElevationToBackground[0],
-}));
 
 Home.Layout = Layout;
 
