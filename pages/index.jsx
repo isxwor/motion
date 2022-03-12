@@ -65,6 +65,7 @@ const Home = () => {
           display: 'flex',
           flexDirection: 'column',
           gap: 'var(--padding)',
+          overflow: 'auto',
         }}
       >
         <Card $elevation={1}>
@@ -126,6 +127,9 @@ const Grid = styled('div', {
   height: 'calc(100vh - var(--appbar-height) - var(--padding) * 2)',
   display: 'grid',
   gap: 'var(--padding)',
+  '@media screen and (max-width: 579px)': {
+    gridTemplateRows: '1fr 1fr',
+  },
   '@media screen and (min-width: 580px)': {
     gridTemplateColumns: '2fr 1fr',
   },
