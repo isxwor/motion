@@ -1,13 +1,14 @@
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
-import { Card } from '@components/ui';
+import { Card, Container } from '@components/ui';
 
 const Home = () => (
-  <Grid>
+  // eslint-disable-next-line no-use-before-define
+  <Container $as={Grid}>
     <Card>Playgorund</Card>
     <Card>Controls</Card>
-  </Grid>
+  </Container>
 );
 
 const Grid = styled('div', {
