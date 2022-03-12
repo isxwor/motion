@@ -10,6 +10,7 @@ import findObjectKey from '@lib/find-object-key';
 const Home = () => {
   const {
     isAnimating,
+    setIsAnimating,
     animationType,
     setAnimationType,
     shape: currentShape,
@@ -28,7 +29,7 @@ const Home = () => {
 
   const scaleStyles = {
     animationDuration: '3s',
-    animationIterationCount: 'infinite',
+    animationIterationCount: '1',
     animationName: {
       from: {
         transform: preScaleAnimation,
@@ -38,6 +39,8 @@ const Home = () => {
       },
     },
   };
+
+  const handleAnimationEnd = () => setIsAnimating(false);
 
   return (
     // eslint-disable-next-line no-use-before-define
@@ -58,6 +61,7 @@ const Home = () => {
               ...(isAnimating ? scaleStyles : { transform: preScaleAnimation }),
             }),
           }}
+          onAnimationEnd={handleAnimationEnd}
         />
       </Card>
       <Card
