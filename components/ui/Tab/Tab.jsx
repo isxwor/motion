@@ -11,6 +11,7 @@ const Root = styled('button', ({ $isActive }) => ({
   paddingBottom: '.5rem',
   width: '100%',
   textAlign: 'center',
+  textTransform: 'capitalize',
   color: 'currentcolor',
   background: $isActive ? 'var(--color-tab-active)' : 'none',
   border: 'none',

@@ -11,7 +11,7 @@ UIContext.displayName = 'UIContext';
 
 const ANIMATION_TYPES = {
   scale: 'SCALE',
-  translate: 'TRANSLATE',
+  slide: 'SLIDE',
   rotate: 'ROTATE',
 };
 
