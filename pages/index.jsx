@@ -1,17 +1,43 @@
+import { useState } from 'react';
+
 import { styled } from 'styletron-react';
 
 import { ANIMATION_TYPES, SHAPES, useUI } from '@components/ui/context';
 import { Layout } from '@components/common';
-import { Card, Container, Shape, TabGroup, Tab } from '@components/ui';
+import { Card, Container, Shape, TabGroup, Tab, Range } from '@components/ui';
 import findObjectKey from '@lib/find-object-key';
 
 const Home = () => {
   const {
+    isAnimating,
     animationType,
     setAnimationType,
     shape: currentShape,
     setShape,
   } = useUI();
+
+  const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
+
+  const [scaleTo, setScaleTo] = useState(1.5);
+
+  const translate = `translate(-50%, -50%)`;
+  const scale = `scale(${scaleTo})`;
+
+  const preScaleAnimation = `${translate} scale(1)`;
+  const postScaleAnimation = `${translate} ${scale}`;
+
+  const scaleStyles = {
+    animationDuration: '3s',
+    animationIterationCount: 'infinite',
+    animationName: {
+      from: {
+        transform: preScaleAnimation,
+      },
+      to: {
+        transform: postScaleAnimation,
+      },
+    },
+  };
 
   return (
     // eslint-disable-next-line no-use-before-define
@@ -22,7 +48,17 @@ const Home = () => {
           overflow: 'hidden',
         }}
       >
-        <Shape $shape={findObjectKey(SHAPES, currentShape)} />
+        <Shape
+          $shape={findObjectKey(SHAPES, currentShape)}
+          $sx={{
+            position: 'absolute',
+            ...(isScaleAnimation && {
+              top: '50%',
+              left: '50%',
+              ...(isAnimating ? scaleStyles : { transform: preScaleAnimation }),
+            }),
+          }}
+        />
       </Card>
       <Card
         $sx={{
@@ -48,6 +84,18 @@ const Home = () => {
               ))}
             </>
           </TabGroup>
+          {isScaleAnimation && (
+            <Range
+              label='Scale'
+              max={2}
+              step={0.25}
+              value={scaleTo}
+              handleOnChange={setScaleTo}
+              sx={{
+                marginTop: '1em',
+              }}
+            />
+          )}
         </Card>
         <Card $elevation={1}>
           <Title>Shape</Title>
