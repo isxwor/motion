@@ -5,7 +5,7 @@ const mapElevationToBackground = {
   1: 'var(--color-background-card-elevated)',
 };
 
-const Card = styled('div', ({ $elevation }) => ({
+const Card = styled('div', ({ $elevation, $sx }) => ({
   paddingTop: 'var(--padding)',
   paddingBottom: 'var(--padding)',
   paddingLeft: 'var(--padding)',
@@ -13,6 +13,7 @@ const Card = styled('div', ({ $elevation }) => ({
   borderRadius: '1em',
   background:
     mapElevationToBackground[$elevation] || mapElevationToBackground[0],
+  ...$sx,
 }));
 
 export default Card;
