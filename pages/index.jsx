@@ -1,12 +1,19 @@
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
-import { Card, Container } from '@components/ui';
+import { Card, Container, Shape } from '@components/ui';
 
 const Home = () => (
   // eslint-disable-next-line no-use-before-define
   <Container $as={Grid}>
-    <Card>Playgorund</Card>
+    <Card
+      $sx={{
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <Shape />
+    </Card>
     <Card>Controls</Card>
   </Container>
 );
