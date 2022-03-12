@@ -15,6 +15,11 @@ const ANIMATION_TYPES = {
   rotate: 'ROTATE',
 };
 
+const SHAPES = {
+  square: 'SQUARE',
+  circle: 'CIRCLE',
+};
+
 const uiReducer = (state, action) => {
   switch (action.type) {
     case 'SET_IS_ANIMATING':
@@ -27,6 +32,11 @@ const uiReducer = (state, action) => {
         ...state,
         animationType: ANIMATION_TYPES[action.animationType],
       };
+    case 'SET_SHAPE':
+      return {
+        ...state,
+        shape: SHAPES[action.shape],
+      };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
@@ -36,6 +46,7 @@ const UIProvider = (props) => {
   const [state, dispatch] = useReducer(uiReducer, {
     isAnimating: false,
     animationType: ANIMATION_TYPES.scale,
+    shape: SHAPES.square,
   });
 
   const setIsAnimating = useCallback(
@@ -48,13 +59,19 @@ const UIProvider = (props) => {
     [dispatch]
   );
 
+  const setShape = useCallback(
+    (shape) => dispatch({ type: 'SET_SHAPE', shape }),
+    [dispatch]
+  );
+
   const value = useMemo(
     () => ({
       ...state,
       setIsAnimating,
       setAnimationType,
+      setShape,
     }),
-    [state, setIsAnimating, setAnimationType]
+    [state, setIsAnimating, setAnimationType, setShape]
   );
 
   return <UIContext.Provider value={value} {...props} />;
@@ -69,4 +86,4 @@ const useUI = () => {
   return context;
 };
 
-export { UIProvider, useUI, ANIMATION_TYPES };
+export { UIProvider, useUI, ANIMATION_TYPES, SHAPES };

@@ -1,12 +1,17 @@
 import { styled } from 'styletron-react';
 
-import { ANIMATION_TYPES, useUI } from '@components/ui/context';
+import { ANIMATION_TYPES, SHAPES, useUI } from '@components/ui/context';
 import { Layout } from '@components/common';
 import { Card, Container, Shape, TabGroup, Tab } from '@components/ui';
 import findObjectKey from '@lib/find-object-key';
 
 const Home = () => {
-  const { animationType, setAnimationType } = useUI();
+  const {
+    animationType,
+    setAnimationType,
+    shape: currentShape,
+    setShape,
+  } = useUI();
 
   return (
     // eslint-disable-next-line no-use-before-define
@@ -17,9 +22,15 @@ const Home = () => {
           overflow: 'hidden',
         }}
       >
-        <Shape />
+        <Shape $shape={findObjectKey(SHAPES, currentShape)} />
       </Card>
-      <Card>
+      <Card
+        $sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--padding)',
+        }}
+      >
         <Card $elevation={1}>
           <Title>Animation Type</Title>
           <TabGroup>
@@ -33,6 +44,22 @@ const Home = () => {
                   onClick={() => setAnimationType(type)}
                 >
                   {type}
+                </Tab>
+              ))}
+            </>
+          </TabGroup>
+        </Card>
+        <Card $elevation={1}>
+          <Title>Shape</Title>
+          <TabGroup>
+            <>
+              {Object.keys(SHAPES).map((shape) => (
+                <Tab
+                  key={shape}
+                  isActive={findObjectKey(SHAPES, currentShape) === shape}
+                  onClick={() => setShape(shape)}
+                >
+                  {shape}
                 </Tab>
               ))}
             </>

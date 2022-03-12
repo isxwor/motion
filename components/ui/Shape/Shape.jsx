@@ -10,6 +10,8 @@ const Shape = styled('div', ({ $shape }) => ({
   width: '5em',
   background: 'var(--color-primary)',
   borderRadius: mapShapeToBorderStyle[$shape] || mapShapeToBorderStyle.square,
+  // this will be dynamically generated in future
+  transition: '200ms all ease',
 }));
 
 export default Shape;
