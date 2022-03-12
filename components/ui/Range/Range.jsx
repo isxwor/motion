@@ -44,7 +44,9 @@ const LabelWrapper = styled('div', {
   justifyContent: 'space-between',
 });
 
-const Value = styled('span', { color: 'var(--color-text-secondary)' });
+const Value = styled('span', {
+  color: 'var(--color-text-secondary)',
+});
 
 const Input = styled('input', ({ $percent }) => ({
   appearance: 'none',

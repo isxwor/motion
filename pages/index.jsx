@@ -19,6 +19,8 @@ const Home = () => {
 
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
+  // TODO: add infinite option
+  const [repeat, setRepeat] = useState(1);
   const [scaleTo, setScaleTo] = useState(1.5);
 
   const translate = `translate(-50%, -50%)`;
@@ -29,7 +31,7 @@ const Home = () => {
 
   const scaleStyles = {
     animationDuration: '3s',
-    animationIterationCount: '1',
+    animationIterationCount: repeat,
     animationName: {
       from: {
         transform: preScaleAnimation,
@@ -103,6 +105,7 @@ const Home = () => {
             />
           )}
         </Card>
+
         <Card $elevation={1}>
           <Title>Shape</Title>
           <TabGroup>
@@ -119,10 +122,57 @@ const Home = () => {
             </>
           </TabGroup>
         </Card>
+
+        <Card $elevation={1}>
+          <Title>Timing</Title>
+          <Label>
+            <p>Repeat</p>
+            <LableValue>{repeat}</LableValue>
+          </Label>
+          <TabGroup>
+            <Tab
+              onClick={() => setRepeat(repeat - 1)}
+              disabled={repeat < 2}
+              sx={{
+                borderTopRightRadius: 'none',
+                borderBottomRightRadius: 'none',
+                borderRight:
+                  '.15em solid var(--color-background-card-elevated)',
+                ':hover': {
+                  background: 'var(--color-tab-active)',
+                },
+              }}
+            >
+              -
+            </Tab>
+            <Tab
+              onClick={() => setRepeat(repeat + 1)}
+              sx={{
+                borderTopLeftRadius: 'none',
+                borderBottomLeftRadius: 'none',
+                ':hover': {
+                  background: 'var(--color-tab-active)',
+                },
+              }}
+            >
+              +
+            </Tab>
+          </TabGroup>
+        </Card>
       </Card>
     </Container>
   );
 };
+
+const Label = styled('div', {
+  marginBottom: 'var(--padding)',
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+const LableValue = styled('span', {
+  color: 'var(--color-text-secondary)',
+});
 
 const Grid = styled('div', {
   '--appbar-height': '40px', // computed value
