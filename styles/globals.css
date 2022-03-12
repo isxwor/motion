@@ -8,12 +8,31 @@
 
 :root {
   --padding: 0.5rem;
+
+  --color-primary: #0066ff;
+  /* gray.2 */
+  --color-text: #d0d7de;
+  /* black */
+  --color-background: #1b1f24;
+  /* gray.9 */
+  --color-background-card: #24292f;
+  /* gray.8 */
+  --color-background-card-elevated: #32383f;
+  /* gray.7 */
+  --color-tab: #424a53;
+  /*gray.6 */
+  --color-tab-active: #57606a;
 }
 
 html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
 }
 
 a {

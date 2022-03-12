@@ -22,9 +22,15 @@ const Grid = styled('div', {
   },
 });
 
-const Card = styled('div', {
-  background: 'tomato',
-});
+const mapElevationToBackground = {
+  0: 'var(--color-background-card)',
+  1: 'var(--color-background-card-elevated)',
+};
+
+const Card = styled('div', ({ $elevation }) => ({
+  background:
+    mapElevationToBackground[$elevation] || mapElevationToBackground[0],
+}));
 
 Home.Layout = Layout;
 

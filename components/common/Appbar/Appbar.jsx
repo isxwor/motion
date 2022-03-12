@@ -22,7 +22,7 @@ const Appbar = () => {
 };
 
 const Root = styled('div', {
-  background: 'grey',
+  background: 'var(--color-background-card)',
   paddingLeft: 'var(--padding)',
   display: 'flex',
   alignItems: 'center',
@@ -39,6 +39,8 @@ const IconButton = styled('button', {
   justifyContent: 'center',
   border: 'none',
   background: 'none',
+  color: 'var(--color-text)',
+  fill: 'var(--color-text)',
 });
 
 export default Appbar;
