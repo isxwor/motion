@@ -1,7 +1,7 @@
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
-import { Card, Container, Shape } from '@components/ui';
+import { Card, Container, Shape, TabGroup, Tab } from '@components/ui';
 
 const Home = () => (
   // eslint-disable-next-line no-use-before-define
@@ -14,7 +14,35 @@ const Home = () => (
     >
       <Shape />
     </Card>
-    <Card>Controls</Card>
+    <Card>
+      <Card $elevation={1}>
+        <Title>Animation Type</Title>
+        <TabGroup>
+          {({ activeIndex, setActiveIndex }) => (
+            <>
+              <Tab
+                isActive={activeIndex === 0}
+                onClick={() => setActiveIndex(0)}
+              >
+                Scale
+              </Tab>
+              <Tab
+                isActive={activeIndex === 1}
+                onClick={() => setActiveIndex(1)}
+              >
+                Translate
+              </Tab>
+              <Tab
+                isActive={activeIndex === 2}
+                onClick={() => setActiveIndex(2)}
+              >
+                Rotate
+              </Tab>
+            </>
+          )}
+        </TabGroup>
+      </Card>
+    </Card>
   </Container>
 );
 
@@ -29,6 +57,10 @@ const Grid = styled('div', {
   '@media screen and (min-width: 580px)': {
     gridTemplateColumns: '2fr 1fr',
   },
+});
+
+const Title = styled('h4', {
+  marginBottom: '1rem',
 });
 
 Home.Layout = Layout;
