@@ -1,50 +1,47 @@
 import { styled } from 'styletron-react';
 
+import { ANIMATION_TYPES, useUI } from '@components/ui/context';
 import { Layout } from '@components/common';
 import { Card, Container, Shape, TabGroup, Tab } from '@components/ui';
+import findObjectKey from '@lib/find-object-key';
 
-const Home = () => (
-  // eslint-disable-next-line no-use-before-define
-  <Container $as={Grid}>
-    <Card
-      $sx={{
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      <Shape />
-    </Card>
-    <Card>
-      <Card $elevation={1}>
-        <Title>Animation Type</Title>
-        <TabGroup>
-          {({ activeIndex, setActiveIndex }) => (
-            <>
-              <Tab
-                isActive={activeIndex === 0}
-                onClick={() => setActiveIndex(0)}
-              >
-                Scale
-              </Tab>
-              <Tab
-                isActive={activeIndex === 1}
-                onClick={() => setActiveIndex(1)}
-              >
-                Translate
-              </Tab>
-              <Tab
-                isActive={activeIndex === 2}
-                onClick={() => setActiveIndex(2)}
-              >
-                Rotate
-              </Tab>
-            </>
-          )}
-        </TabGroup>
+const Home = () => {
+  const { animationType, setAnimationType } = useUI();
+
+  return (
+    // eslint-disable-next-line no-use-before-define
+    <Container $as={Grid}>
+      <Card
+        $sx={{
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <Shape />
       </Card>
-    </Card>
-  </Container>
-);
+      <Card>
+        <Card $elevation={1}>
+          <Title>Animation Type</Title>
+          <TabGroup>
+            <>
+              {Object.keys(ANIMATION_TYPES).map((type) => (
+                <Tab
+                  key={type}
+                  isActive={
+                    findObjectKey(ANIMATION_TYPES, animationType) === type
+                  }
+                  onClick={() => setAnimationType(type)}
+                >
+                  {type}
+                </Tab>
+              ))}
+            </>
+          </TabGroup>
+        </Card>
+      </Card>
+    </Container>
+  );
+};
 
 const Grid = styled('div', {
   '--appbar-height': '40px', // computed value
