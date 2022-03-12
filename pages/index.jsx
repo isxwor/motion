@@ -92,6 +92,7 @@ const Home = () => {
           {isScaleAnimation && (
             <Range
               label='Scale'
+              id='scale_range'
               max={2}
               step={0.25}
               value={scaleTo}

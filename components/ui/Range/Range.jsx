@@ -2,6 +2,7 @@ import { styled } from 'styletron-react';
 
 const Range = ({
   label,
+  id,
   min = 0,
   max = 100,
   step,
@@ -13,10 +14,13 @@ const Range = ({
 
   return (
     <Root $sx={sx}>
-      <label htmlFor='scale_range'>{label}</label>
-      <RangeInput
+      <LabelWrapper>
+        <label htmlFor={id}>{label}</label>
+        <Value>{value}</Value>
+      </LabelWrapper>
+      <Input
         type='range'
-        id='scale_range'
+        id={id}
         min={min}
         max={max}
         value={value}
@@ -35,7 +39,14 @@ const Root = styled('div', ({ $sx }) => ({
   ...$sx,
 }));
 
-const RangeInput = styled('input', ({ $percent }) => ({
+const LabelWrapper = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+const Value = styled('span', { color: 'var(--color-text-secondary)' });
+
+const Input = styled('input', ({ $percent }) => ({
   appearance: 'none',
   height: '.5em',
   borderRadius: '1em',
