@@ -10,25 +10,25 @@ import {
   Range,
   Toggle,
 } from '@components/ui';
-import findObjectKey from '@lib/find-object-key';
+import { ShapeController } from '@components/controllers';
 import { useAnimationStore } from '@store/useAnimationStore';
 import {
   ANIMATION_TYPES,
   useAnimationTypeStore,
 } from '@store/useAnimationTypeStore';
-import { SHAPES, useShapeStore } from '@store/useShapeStore';
+import { useShapeStore } from '@store/useShapeStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
 import { useSpeedStore } from '@store/useSpeedStore';
 import { useDelayStore } from '@store/useDelayStore';
 import { useRepeatStore } from '@store/useRepeatStore';
 import { useScaleFactorStore } from '@store/useScaleFactorStore';
+import findObjectKey from '@lib/find-object-key';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
   const stopAnimation = useAnimationStore((state) => state.stopAnimation);
 
   const currentShape = useShapeStore((state) => state.currentShape);
-  const setCurrentShape = useShapeStore((state) => state.setCurrentShape);
 
   const animationType = useAnimationTypeStore((state) => state.animationType);
   const setAnimationType = useAnimationTypeStore(
@@ -141,22 +141,7 @@ const Home = () => {
           )}
         </Card>
 
-        <Card $elevation={1}>
-          <Title>Shape</Title>
-          <TabGroup>
-            <>
-              {Object.keys(SHAPES).map((shape) => (
-                <Tab
-                  key={shape}
-                  isActive={findObjectKey(SHAPES, currentShape) === shape}
-                  onClick={() => setCurrentShape(shape)}
-                >
-                  {shape}
-                </Tab>
-              ))}
-            </>
-          </TabGroup>
-        </Card>
+        <ShapeController />
 
         <Card $elevation={1}>
           <Title>Timing</Title>
