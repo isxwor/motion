@@ -4,3 +4,4 @@ export { default as Shape } from './Shape';
 export { default as TabGroup } from './TabGroup';
 export { default as Tab } from './Tab';
 export { default as Range } from './Range';
+export { default as Toggle } from './Toggle';
