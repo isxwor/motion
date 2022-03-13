@@ -68,19 +68,15 @@ const Home = () => {
   const scaleStyles = {
     top: '50%',
     left: '50%',
+    transform: preScaleAnimation,
     ...timingStyles,
-    ...(isAnimating
-      ? {
-          animationName: {
-            from: {
-              transform: preScaleAnimation,
-            },
-            to: {
-              transform: postScaleAnimation,
-            },
-          },
-        }
-      : { transform: preScaleAnimation }),
+    ...(isAnimating && {
+      animationName: {
+        to: {
+          transform: postScaleAnimation,
+        },
+      },
+    }),
   };
 
   return (
