@@ -22,23 +22,17 @@ import { useScaleFactorStore } from '@store/useScaleFactorStore';
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
   const stopAnimation = useAnimationStore((state) => state.stopAnimation);
-
   const currentShape = useShapeStore((state) => state.currentShape);
-
   const animationType = useAnimationTypeStore((state) => state.animationType);
-
   const autoreverse = useAutoreverseStore((state) => state.autoreverse);
-
   const speed = useSpeedStore((state) => state.speed);
-
   const delay = useDelayStore((state) => state.delay);
-
-  const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
+  const scaleFactor = useScaleFactorStore((state) => state.scaleFactor);
 
   // TODO: add infinite option
   const repeat = useRepeatStore((state) => state.repeat);
 
-  const scaleFactor = useScaleFactorStore((state) => state.scaleFactor);
+  const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
   const translate = `translate(-50%, -50%)`;
   const scale = `scale(${scaleFactor})`;
