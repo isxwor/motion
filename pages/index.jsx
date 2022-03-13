@@ -20,6 +20,7 @@ import {
 } from '@store/useAnimationTypeStore';
 import { SHAPES, useShapeStore } from '@store/useShapeStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
+import { useSpeedStore } from '@store/useSpeedStore';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -36,6 +37,9 @@ const Home = () => {
   const autoreverse = useAutoreverseStore((state) => state.autoreverse);
   const setAutoreverse = useAutoreverseStore((state) => state.setAutoreverse);
 
+  const speed = useSpeedStore((state) => state.speed);
+  const setSpeed = useSpeedStore((state) => state.setSpeed);
+
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
   // TODO: add infinite option
@@ -48,8 +52,11 @@ const Home = () => {
   const preScaleAnimation = `${translate} scale(1)`;
   const postScaleAnimation = `${translate} ${scale}`;
 
+  const baseDuration = 1;
+  const duration = baseDuration / speed;
+
   const timingStyles = {
-    animationDuration: '3s',
+    animationDuration: `${duration}s`,
     animationIterationCount: repeat,
     animationDirection: autoreverse ? 'alternate' : 'normal',
   };
@@ -187,6 +194,20 @@ const Home = () => {
             <p>Autoreverses</p>
             <Toggle checked={autoreverse} onClickHandler={setAutoreverse} />
           </Label>
+
+          <Range
+            label='Speed'
+            id='speed_range'
+            min={0.25}
+            max={2}
+            step={0.25}
+            value={speed}
+            valuePostfix='x'
+            handleOnChange={setSpeed}
+            sx={{
+              marginTop: '1em',
+            }}
+          />
         </Card>
       </Card>
     </Container>
