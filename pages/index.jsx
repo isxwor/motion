@@ -18,6 +18,7 @@ import { useSpeedStore } from '@store/useSpeedStore';
 import { useDelayStore } from '@store/useDelayStore';
 import { useRepeatStore } from '@store/useRepeatStore';
 import { useScaleFactorStore } from '@store/useScaleFactorStore';
+import { useRotateStore } from '@store/useRotateStore';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -28,16 +29,18 @@ const Home = () => {
   const speed = useSpeedStore((state) => state.speed);
   const delay = useDelayStore((state) => state.delay);
   const scaleFactor = useScaleFactorStore((state) => state.scaleFactor);
+  const rotate = useRotateStore((state) => state.rotate);
 
   // TODO: add infinite option
   const repeat = useRepeatStore((state) => state.repeat);
 
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
+  const isRotateAnimation = animationType === ANIMATION_TYPES.rotate;
 
   const translate = `translate(-50%, -50%)`;
   const scale = `scale(${scaleFactor})`;
 
-  const preScaleAnimation = `${translate} scale(1)`;
+  const preScaleAndRotateAnimation = `${translate}`;
   const postScaleAnimation = `${translate} ${scale}`;
 
   const baseDuration = 1;
@@ -52,12 +55,28 @@ const Home = () => {
   const scaleStyles = {
     top: '50%',
     left: '50%',
-    transform: preScaleAnimation,
+    transform: preScaleAndRotateAnimation,
     ...timingStyles,
     ...(isAnimating && {
       animationName: {
         to: {
           transform: postScaleAnimation,
+        },
+      },
+    }),
+  };
+
+  const postRotateAnimation = `${translate} rotate(${rotate}deg)`;
+
+  const rotateStyles = {
+    top: '50%',
+    left: '50%',
+    transform: preScaleAndRotateAnimation,
+    ...timingStyles,
+    ...(isAnimating && {
+      animationName: {
+        to: {
+          transform: postRotateAnimation,
         },
       },
     }),
@@ -77,6 +96,7 @@ const Home = () => {
           $sx={{
             position: 'absolute',
             ...(isScaleAnimation && scaleStyles),
+            ...(isRotateAnimation && rotateStyles),
           }}
           onAnimationEnd={stopAnimation}
         />
