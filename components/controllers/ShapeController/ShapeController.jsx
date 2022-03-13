@@ -11,17 +11,15 @@ const ShapeController = () => {
   return (
     <Card elevation={1} title='Shape'>
       <TabGroup>
-        <>
-          {Object.keys(SHAPES).map((shape) => (
-            <Tab
-              key={shape}
-              isActive={findObjectKey(SHAPES, currentShape) === shape}
-              onClick={() => setCurrentShape(shape)}
-            >
-              {shape}
-            </Tab>
-          ))}
-        </>
+        {Object.keys(SHAPES).map((shape) => (
+          <Tab
+            key={shape}
+            isActive={findObjectKey(SHAPES, currentShape) === shape}
+            onClick={() => setCurrentShape(shape)}
+          >
+            {shape}
+          </Tab>
+        ))}
       </TabGroup>
     </Card>
   );

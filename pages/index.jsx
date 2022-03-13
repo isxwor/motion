@@ -111,19 +111,17 @@ const Home = () => {
       >
         <Card elevation={1} title='Animation Type'>
           <TabGroup>
-            <>
-              {Object.keys(ANIMATION_TYPES).map((type) => (
-                <Tab
-                  key={type}
-                  isActive={
-                    findObjectKey(ANIMATION_TYPES, animationType) === type
-                  }
-                  onClick={() => setAnimationType(type)}
-                >
-                  {type}
-                </Tab>
-              ))}
-            </>
+            {Object.keys(ANIMATION_TYPES).map((type) => (
+              <Tab
+                key={type}
+                isActive={
+                  findObjectKey(ANIMATION_TYPES, animationType) === type
+                }
+                onClick={() => setAnimationType(type)}
+              >
+                {type}
+              </Tab>
+            ))}
           </TabGroup>
           {isScaleAnimation && (
             <Range
