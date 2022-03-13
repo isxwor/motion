@@ -1,16 +1,8 @@
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
-import {
-  Card,
-  Container,
-  Shape,
-  TabGroup,
-  Tab,
-  Range,
-  Toggle,
-} from '@components/ui';
-import { ShapeController } from '@components/controllers';
+import { Card, Container, Shape, TabGroup, Tab, Range } from '@components/ui';
+import { ShapeController, TimingController } from '@components/controllers';
 import { useAnimationStore } from '@store/useAnimationStore';
 import {
   ANIMATION_TYPES,
@@ -36,20 +28,15 @@ const Home = () => {
   );
 
   const autoreverse = useAutoreverseStore((state) => state.autoreverse);
-  const setAutoreverse = useAutoreverseStore((state) => state.setAutoreverse);
 
   const speed = useSpeedStore((state) => state.speed);
-  const setSpeed = useSpeedStore((state) => state.setSpeed);
 
   const delay = useDelayStore((state) => state.delay);
-  const setDelay = useDelayStore((state) => state.setDelay);
 
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
   // TODO: add infinite option
   const repeat = useRepeatStore((state) => state.repeat);
-  const incrementRepeat = useRepeatStore((state) => state.incrementRepeat);
-  const decrementRepeat = useRepeatStore((state) => state.decrementRepeat);
 
   const scaleFactor = useScaleFactorStore((state) => state.scaleFactor);
   const setScaleFactor = useScaleFactorStore((state) => state.setScaleFactor);
@@ -139,94 +126,11 @@ const Home = () => {
         </Card>
 
         <ShapeController />
-
-        <Card elevation={1} title='Timing'>
-          <Label>
-            <p>Repeat</p>
-            <LableValue>{repeat}</LableValue>
-          </Label>
-          <TabGroup>
-            <Tab
-              onClick={decrementRepeat}
-              disabled={repeat < 2}
-              sx={{
-                borderTopRightRadius: 'none',
-                borderBottomRightRadius: 'none',
-                borderRight:
-                  '.15em solid var(--color-background-card-elevated)',
-                ':hover': {
-                  background: 'var(--color-tab-active)',
-                },
-              }}
-            >
-              -
-            </Tab>
-            <Tab
-              onClick={incrementRepeat}
-              sx={{
-                borderTopLeftRadius: 'none',
-                borderBottomLeftRadius: 'none',
-                ':hover': {
-                  background: 'var(--color-tab-active)',
-                },
-              }}
-            >
-              +
-            </Tab>
-          </TabGroup>
-
-          <Label>
-            <p>Autoreverses</p>
-            <Toggle
-              checked={autoreverse}
-              onClickHandler={() => setAutoreverse(!autoreverse)}
-            />
-          </Label>
-
-          <Range
-            label='Speed'
-            id='speed_range'
-            min={0.25}
-            max={2}
-            step={0.25}
-            value={speed}
-            valuePostfix='x'
-            handleOnChange={setSpeed}
-            sx={{
-              marginTop: '1em',
-            }}
-          />
-
-          <Range
-            label='Delay'
-            id='delay_range'
-            max={1000}
-            step={50}
-            value={delay}
-            valuePostfix=' ms'
-            handleOnChange={setDelay}
-            sx={{
-              marginTop: '1em',
-            }}
-          />
-        </Card>
+        <TimingController />
       </Card>
     </Container>
   );
 };
-
-// TODO: consistent spacing
-const Label = styled('div', {
-  marginTop: 'var(--padding)',
-  marginBottom: 'var(--padding)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-});
-
-const LableValue = styled('span', {
-  color: 'var(--color-text-secondary)',
-});
 
 const Grid = styled('div', {
   '--appbar-height': '40px', // computed value
