@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
@@ -23,6 +21,7 @@ import { useAutoreverseStore } from '@store/useAutoreverseStore';
 import { useSpeedStore } from '@store/useSpeedStore';
 import { useDelayStore } from '@store/useDelayStore';
 import { useRepeatStore } from '@store/useRepeatStore';
+import { useScaleFactorStore } from '@store/useScaleFactorStore';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -52,10 +51,11 @@ const Home = () => {
   const incrementRepeat = useRepeatStore((state) => state.incrementRepeat);
   const decrementRepeat = useRepeatStore((state) => state.decrementRepeat);
 
-  const [scaleTo, setScaleTo] = useState(1.5);
+  const scaleFactor = useScaleFactorStore((state) => state.scaleFactor);
+  const setScaleFactor = useScaleFactorStore((state) => state.setScaleFactor);
 
   const translate = `translate(-50%, -50%)`;
-  const scale = `scale(${scaleTo})`;
+  const scale = `scale(${scaleFactor})`;
 
   const preScaleAnimation = `${translate} scale(1)`;
   const postScaleAnimation = `${translate} ${scale}`;
@@ -132,8 +132,8 @@ const Home = () => {
               id='scale_range'
               max={2}
               step={0.25}
-              value={scaleTo}
-              handleOnChange={setScaleTo}
+              value={scaleFactor}
+              handleOnChange={setScaleFactor}
               sx={{
                 marginTop: '1em',
               }}
