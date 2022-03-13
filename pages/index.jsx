@@ -21,6 +21,7 @@ import {
 import { SHAPES, useShapeStore } from '@store/useShapeStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
 import { useSpeedStore } from '@store/useSpeedStore';
+import { useDelayStore } from '@store/useDelayStore';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -40,6 +41,9 @@ const Home = () => {
   const speed = useSpeedStore((state) => state.speed);
   const setSpeed = useSpeedStore((state) => state.setSpeed);
 
+  const delay = useDelayStore((state) => state.delay);
+  const setDelay = useDelayStore((state) => state.setDelay);
+
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
   // TODO: add infinite option
@@ -53,10 +57,10 @@ const Home = () => {
   const postScaleAnimation = `${translate} ${scale}`;
 
   const baseDuration = 1;
-  const duration = baseDuration / speed;
 
   const timingStyles = {
-    animationDuration: `${duration}s`,
+    animationDelay: `${delay}ms`,
+    animationDuration: `${baseDuration / speed}s`,
     animationIterationCount: repeat,
     animationDirection: autoreverse ? 'alternate' : 'normal',
   };
@@ -204,6 +208,19 @@ const Home = () => {
             value={speed}
             valuePostfix='x'
             handleOnChange={setSpeed}
+            sx={{
+              marginTop: '1em',
+            }}
+          />
+
+          <Range
+            label='Delay'
+            id='delay_range'
+            max={1000}
+            step={50}
+            value={delay}
+            valuePostfix=' ms'
+            handleOnChange={setDelay}
             sx={{
               marginTop: '1em',
             }}
