@@ -7,6 +7,7 @@ const Range = ({
   max = 100,
   step,
   value,
+  valuePostfix,
   handleOnChange,
   sx,
 }) => {
@@ -16,7 +17,10 @@ const Range = ({
     <Root $sx={sx}>
       <LabelWrapper>
         <label htmlFor={id}>{label}</label>
-        <Value>{value}</Value>
+        <Value>
+          {value}
+          {valuePostfix}
+        </Value>
       </LabelWrapper>
       <Input
         type='range'
