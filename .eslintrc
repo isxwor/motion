@@ -36,7 +36,8 @@
         "classes": true,
         "variables": true
       }
-    ]
+    ],
+    "import/prefer-default-export": 0
   },
   "settings": {
     "import/resolver": {
