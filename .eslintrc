@@ -45,7 +45,8 @@
         "map": [
           ["@components", "./components"],
           ["@styles", "./styles"],
-          ["@lib", "./lib"]
+          ["@lib", "./lib"],
+          ["@store", "./store"]
         ],
         "extensions": [".js", ".jsx"]
       }

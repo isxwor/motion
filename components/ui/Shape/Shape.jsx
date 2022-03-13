@@ -1,8 +1,8 @@
 import { styled } from 'styletron-react';
 
 const mapShapeToBorderStyle = {
-  square: '1em',
-  circle: '50%',
+  SQUARE: '1em',
+  CIRCLE: '50%',
 };
 
 const Shape = styled('div', ({ $shape, $sx }) => ({

@@ -1,15 +1,12 @@
 import { styled } from 'styletron-react';
 
-import { useUI } from '@components/ui/context';
 import { Container } from '@components/ui';
 import { Play, Pause } from '@components/icons';
+import { useAnimationStore } from '@store/useAnimationStore';
 
 const Appbar = () => {
-  const { isAnimating, setIsAnimating } = useUI();
-
-  const handleClick = () => {
-    setIsAnimating(!isAnimating);
-  };
+  const isAnimating = useAnimationStore((state) => state.isAnimating);
+  const toggleAnimation = useAnimationStore((state) => state.toggleAnimation);
 
   return (
     <FullBleed>
@@ -21,7 +18,7 @@ const Appbar = () => {
         }}
       >
         <h3>Motion</h3>
-        <IconButton type='button' onClick={handleClick}>
+        <IconButton type='button' onClick={toggleAnimation}>
           {isAnimating ? <Pause /> : <Play />}
         </IconButton>
       </Container>

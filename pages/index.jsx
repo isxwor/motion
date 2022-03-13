@@ -2,20 +2,28 @@ import { useState } from 'react';
 
 import { styled } from 'styletron-react';
 
-import { ANIMATION_TYPES, SHAPES, useUI } from '@components/ui/context';
 import { Layout } from '@components/common';
 import { Card, Container, Shape, TabGroup, Tab, Range } from '@components/ui';
 import findObjectKey from '@lib/find-object-key';
 
+import { useAnimationStore } from '@store/useAnimationStore';
+import {
+  ANIMATION_TYPES,
+  useAnimationTypeStore,
+} from '@store/useAnimationTypeStore';
+import { SHAPES, useShapeStore } from '@store/useShapeStore';
+
 const Home = () => {
-  const {
-    isAnimating,
-    setIsAnimating,
-    animationType,
-    setAnimationType,
-    shape: currentShape,
-    setShape,
-  } = useUI();
+  const isAnimating = useAnimationStore((state) => state.isAnimating);
+  const stopAnimation = useAnimationStore((state) => state.stopAnimation);
+
+  const currentShape = useShapeStore((state) => state.currentShape);
+  const setCurrentShape = useShapeStore((state) => state.setCurrentShape);
+
+  const animationType = useAnimationTypeStore((state) => state.animationType);
+  const setAnimationType = useAnimationTypeStore(
+    (state) => state.setAnimationType
+  );
 
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
@@ -42,8 +50,6 @@ const Home = () => {
     },
   };
 
-  const handleAnimationEnd = () => setIsAnimating(false);
-
   return (
     // eslint-disable-next-line no-use-before-define
     <Container $as={Grid}>
@@ -54,7 +60,7 @@ const Home = () => {
         }}
       >
         <Shape
-          $shape={findObjectKey(SHAPES, currentShape)}
+          $shape={currentShape}
           $sx={{
             position: 'absolute',
             ...(isScaleAnimation && {
@@ -63,7 +69,7 @@ const Home = () => {
               ...(isAnimating ? scaleStyles : { transform: preScaleAnimation }),
             }),
           }}
-          onAnimationEnd={handleAnimationEnd}
+          onAnimationEnd={stopAnimation}
         />
       </Card>
       <Card
@@ -114,7 +120,7 @@ const Home = () => {
                 <Tab
                   key={shape}
                   isActive={findObjectKey(SHAPES, currentShape) === shape}
-                  onClick={() => setShape(shape)}
+                  onClick={() => setCurrentShape(shape)}
                 >
                   {shape}
                 </Tab>
