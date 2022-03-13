@@ -55,15 +55,21 @@ const Home = () => {
   };
 
   const scaleStyles = {
+    top: '50%',
+    left: '50%',
     ...timingStyles,
-    animationName: {
-      from: {
-        transform: preScaleAnimation,
-      },
-      to: {
-        transform: postScaleAnimation,
-      },
-    },
+    ...(isAnimating
+      ? {
+          animationName: {
+            from: {
+              transform: preScaleAnimation,
+            },
+            to: {
+              transform: postScaleAnimation,
+            },
+          },
+        }
+      : { transform: preScaleAnimation }),
   };
 
   return (
@@ -79,11 +85,7 @@ const Home = () => {
           $shape={currentShape}
           $sx={{
             position: 'absolute',
-            ...(isScaleAnimation && {
-              top: '50%',
-              left: '50%',
-              ...(isAnimating ? scaleStyles : { transform: preScaleAnimation }),
-            }),
+            ...(isScaleAnimation && scaleStyles),
           }}
           onAnimationEnd={stopAnimation}
         />
@@ -191,6 +193,7 @@ const Home = () => {
   );
 };
 
+// TODO: consistent spacing
 const Label = styled('div', {
   marginTop: 'var(--padding)',
   marginBottom: 'var(--padding)',
