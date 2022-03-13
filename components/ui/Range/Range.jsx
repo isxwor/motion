@@ -56,11 +56,7 @@ const Input = styled('input', ({ $percent }) => ({
   appearance: 'none',
   height: '.5em',
   borderRadius: '1em',
-  background: `linear-gradient(
-    to right,
-    var(--color-primary) 0%, var(--color-primary) ${$percent}%,
-    var(--color-tab) ${$percent}%, var(--color-tab) 100%
-  )`,
+  background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${$percent}%, var(--color-tab) ${$percent}%, var(--color-tab) 100%)`,
   '::-webkit-slider-thumb': {
     appearance: 'none',
     background: 'var(--color-text)',
