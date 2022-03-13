@@ -1,8 +1,12 @@
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
-import { Card, Container, Shape, TabGroup, Tab, Range } from '@components/ui';
-import { ShapeController, TimingController } from '@components/controllers';
+import { Card, Container, Shape } from '@components/ui';
+import {
+  AnimationTypeController,
+  ShapeController,
+  TimingController,
+} from '@components/controllers';
 import { useAnimationStore } from '@store/useAnimationStore';
 import {
   ANIMATION_TYPES,
@@ -14,7 +18,6 @@ import { useSpeedStore } from '@store/useSpeedStore';
 import { useDelayStore } from '@store/useDelayStore';
 import { useRepeatStore } from '@store/useRepeatStore';
 import { useScaleFactorStore } from '@store/useScaleFactorStore';
-import findObjectKey from '@lib/find-object-key';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -23,9 +26,6 @@ const Home = () => {
   const currentShape = useShapeStore((state) => state.currentShape);
 
   const animationType = useAnimationTypeStore((state) => state.animationType);
-  const setAnimationType = useAnimationTypeStore(
-    (state) => state.setAnimationType
-  );
 
   const autoreverse = useAutoreverseStore((state) => state.autoreverse);
 
@@ -39,7 +39,6 @@ const Home = () => {
   const repeat = useRepeatStore((state) => state.repeat);
 
   const scaleFactor = useScaleFactorStore((state) => state.scaleFactor);
-  const setScaleFactor = useScaleFactorStore((state) => state.setScaleFactor);
 
   const translate = `translate(-50%, -50%)`;
   const scale = `scale(${scaleFactor})`;
@@ -96,35 +95,7 @@ const Home = () => {
           overflow: 'auto',
         }}
       >
-        <Card elevation={1} title='Animation Type'>
-          <TabGroup>
-            {Object.keys(ANIMATION_TYPES).map((type) => (
-              <Tab
-                key={type}
-                isActive={
-                  findObjectKey(ANIMATION_TYPES, animationType) === type
-                }
-                onClick={() => setAnimationType(type)}
-              >
-                {type}
-              </Tab>
-            ))}
-          </TabGroup>
-          {isScaleAnimation && (
-            <Range
-              label='Scale'
-              id='scale_range'
-              max={2}
-              step={0.25}
-              value={scaleFactor}
-              handleOnChange={setScaleFactor}
-              sx={{
-                marginTop: '1em',
-              }}
-            />
-          )}
-        </Card>
-
+        <AnimationTypeController />
         <ShapeController />
         <TimingController />
       </Card>
