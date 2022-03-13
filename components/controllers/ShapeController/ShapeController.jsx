@@ -9,8 +9,7 @@ const ShapeController = () => {
   const setCurrentShape = useShapeStore((state) => state.setCurrentShape);
 
   return (
-    <Card $elevation={1}>
-      <Title>Shape</Title>
+    <Card elevation={1} title='Shape'>
       <TabGroup>
         <>
           {Object.keys(SHAPES).map((shape) => (
@@ -27,9 +26,5 @@ const ShapeController = () => {
     </Card>
   );
 };
-
-const Title = styled('h4', {
-  marginBottom: '1rem',
-});
 
 export default ShapeController;

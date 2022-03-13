@@ -87,7 +87,7 @@ const Home = () => {
     // eslint-disable-next-line no-use-before-define
     <Container $as={Grid}>
       <Card
-        $sx={{
+        sx={{
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -102,15 +102,14 @@ const Home = () => {
         />
       </Card>
       <Card
-        $sx={{
+        sx={{
           display: 'flex',
           flexDirection: 'column',
           gap: 'var(--padding)',
           overflow: 'auto',
         }}
       >
-        <Card $elevation={1}>
-          <Title>Animation Type</Title>
+        <Card elevation={1} title='Animation Type'>
           <TabGroup>
             <>
               {Object.keys(ANIMATION_TYPES).map((type) => (
@@ -143,8 +142,7 @@ const Home = () => {
 
         <ShapeController />
 
-        <Card $elevation={1}>
-          <Title>Timing</Title>
+        <Card elevation={1} title='Timing'>
           <Label>
             <p>Repeat</p>
             <LableValue>{repeat}</LableValue>
@@ -246,10 +244,6 @@ const Grid = styled('div', {
   '@media screen and (min-width: 580px)': {
     gridTemplateColumns: '2fr 1fr',
   },
-});
-
-const Title = styled('h4', {
-  marginBottom: '1rem',
 });
 
 Home.Layout = Layout;
