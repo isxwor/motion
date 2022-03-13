@@ -37,13 +37,8 @@ const Home = () => {
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
   const isRotateAnimation = animationType === ANIMATION_TYPES.rotate;
 
-  const translate = `translate(-50%, -50%)`;
-  const scale = `scale(${scaleFactor})`;
-
-  const preScaleAndRotateAnimation = `${translate}`;
-  const postScaleAnimation = `${translate} ${scale}`;
-
   const baseDuration = 1;
+  const translate = `translate(-50%, -50%)`;
 
   const timingStyles = {
     animationDelay: `${delay}ms`,
@@ -52,11 +47,18 @@ const Home = () => {
     animationDirection: autoreverse ? 'alternate' : 'normal',
   };
 
-  const scaleStyles = {
+  const postScaleAnimation = `${translate} scale(${scaleFactor})`;
+  const postRotateAnimation = `${translate} rotate(${rotate}deg)`;
+
+  const sharedStyles = {
     top: '50%',
     left: '50%',
-    transform: preScaleAndRotateAnimation,
+    transform: `${translate}`,
     ...timingStyles,
+  };
+
+  const scaleStyles = {
+    ...sharedStyles,
     ...(isAnimating && {
       animationName: {
         to: {
@@ -66,13 +68,8 @@ const Home = () => {
     }),
   };
 
-  const postRotateAnimation = `${translate} rotate(${rotate}deg)`;
-
   const rotateStyles = {
-    top: '50%',
-    left: '50%',
-    transform: preScaleAndRotateAnimation,
-    ...timingStyles,
+    ...sharedStyles,
     ...(isAnimating && {
       animationName: {
         to: {
