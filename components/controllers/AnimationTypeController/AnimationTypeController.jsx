@@ -55,6 +55,7 @@ const AnimationTypeController = () => {
           max={360}
           step={5}
           value={rotate}
+          valuePostfix='&deg;'
           handleOnChange={setRotate}
           sx={{
             marginTop: '1em',
