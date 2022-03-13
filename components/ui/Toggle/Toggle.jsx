@@ -2,11 +2,7 @@ import { styled } from 'styletron-react';
 
 // TODO: improve accessibility by adding label / pass id to toggle
 const Toggle = ({ checked, onClickHandler }) => (
-  <ToogleRoot
-    type='checkbox'
-    $checked={checked}
-    onClick={() => onClickHandler(!checked)}
-  />
+  <ToogleRoot type='checkbox' $checked={checked} onClick={onClickHandler} />
 );
 
 const ToogleRoot = styled('input', ({ $checked }) => ({

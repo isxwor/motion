@@ -192,7 +192,10 @@ const Home = () => {
 
           <Label>
             <p>Autoreverses</p>
-            <Toggle checked={autoreverse} onClickHandler={setAutoreverse} />
+            <Toggle
+              checked={autoreverse}
+              onClickHandler={() => setAutoreverse(!autoreverse)}
+            />
           </Label>
 
           <Range
