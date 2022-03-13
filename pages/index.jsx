@@ -22,6 +22,7 @@ import { SHAPES, useShapeStore } from '@store/useShapeStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
 import { useSpeedStore } from '@store/useSpeedStore';
 import { useDelayStore } from '@store/useDelayStore';
+import { useRepeatStore } from '@store/useRepeatStore';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -47,7 +48,10 @@ const Home = () => {
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
   // TODO: add infinite option
-  const [repeat, setRepeat] = useState(1);
+  const repeat = useRepeatStore((state) => state.repeat);
+  const incrementRepeat = useRepeatStore((state) => state.incrementRepeat);
+  const decrementRepeat = useRepeatStore((state) => state.decrementRepeat);
+
   const [scaleTo, setScaleTo] = useState(1.5);
 
   const translate = `translate(-50%, -50%)`;
@@ -162,7 +166,7 @@ const Home = () => {
           </Label>
           <TabGroup>
             <Tab
-              onClick={() => setRepeat(repeat - 1)}
+              onClick={decrementRepeat}
               disabled={repeat < 2}
               sx={{
                 borderTopRightRadius: 'none',
@@ -177,7 +181,7 @@ const Home = () => {
               -
             </Tab>
             <Tab
-              onClick={() => setRepeat(repeat + 1)}
+              onClick={incrementRepeat}
               sx={{
                 borderTopLeftRadius: 'none',
                 borderBottomLeftRadius: 'none',
