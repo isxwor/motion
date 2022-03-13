@@ -1,5 +1,3 @@
-import { styled } from 'styletron-react';
-
 import { Card, TabGroup, Tab } from '@components/ui';
 import { SHAPES, useShapeStore } from '@store/useShapeStore';
 import findObjectKey from '@lib/find-object-key';
