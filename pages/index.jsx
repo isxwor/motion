@@ -3,15 +3,23 @@ import { useState } from 'react';
 import { styled } from 'styletron-react';
 
 import { Layout } from '@components/common';
-import { Card, Container, Shape, TabGroup, Tab, Range } from '@components/ui';
+import {
+  Card,
+  Container,
+  Shape,
+  TabGroup,
+  Tab,
+  Range,
+  Toggle,
+} from '@components/ui';
 import findObjectKey from '@lib/find-object-key';
-
 import { useAnimationStore } from '@store/useAnimationStore';
 import {
   ANIMATION_TYPES,
   useAnimationTypeStore,
 } from '@store/useAnimationTypeStore';
 import { SHAPES, useShapeStore } from '@store/useShapeStore';
+import { useAutoreverseStore } from '@store/useAutoreverseStore';
 
 const Home = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
@@ -25,6 +33,9 @@ const Home = () => {
     (state) => state.setAnimationType
   );
 
+  const autoreverse = useAutoreverseStore((state) => state.autoreverse);
+  const setAutoreverse = useAutoreverseStore((state) => state.setAutoreverse);
+
   const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
 
   // TODO: add infinite option
@@ -37,9 +48,14 @@ const Home = () => {
   const preScaleAnimation = `${translate} scale(1)`;
   const postScaleAnimation = `${translate} ${scale}`;
 
-  const scaleStyles = {
+  const timingStyles = {
     animationDuration: '3s',
     animationIterationCount: repeat,
+    animationDirection: autoreverse ? 'alternate' : 'normal',
+  };
+
+  const scaleStyles = {
+    ...timingStyles,
     animationName: {
       from: {
         transform: preScaleAnimation,
@@ -164,6 +180,11 @@ const Home = () => {
               +
             </Tab>
           </TabGroup>
+
+          <Label>
+            <p>Autoreverses</p>
+            <Toggle checked={autoreverse} onClickHandler={setAutoreverse} />
+          </Label>
         </Card>
       </Card>
     </Container>
@@ -171,8 +192,10 @@ const Home = () => {
 };
 
 const Label = styled('div', {
+  marginTop: 'var(--padding)',
   marginBottom: 'var(--padding)',
   display: 'flex',
+  alignItems: 'center',
   justifyContent: 'space-between',
 });
 
