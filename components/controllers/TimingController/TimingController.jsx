@@ -12,7 +12,9 @@ const TimingController = () => {
   const decrementRepeat = useRepeatStore((state) => state.decrementRepeat);
 
   const autoreverse = useAutoreverseStore((state) => state.autoreverse);
-  const setAutoreverse = useAutoreverseStore((state) => state.setAutoreverse);
+  const toggleAutoreverse = useAutoreverseStore(
+    (state) => state.toggleAutoreverse
+  );
 
   const speed = useSpeedStore((state) => state.speed);
   const setSpeed = useSpeedStore((state) => state.setSpeed);
@@ -57,10 +59,7 @@ const TimingController = () => {
 
       <Label>
         <p>Autoreverses</p>
-        <Toggle
-          checked={autoreverse}
-          onClickHandler={() => setAutoreverse(!autoreverse)}
-        />
+        <Toggle checked={autoreverse} onClickHandler={toggleAutoreverse} />
       </Label>
 
       <Range
