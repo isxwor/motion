@@ -15,6 +15,7 @@ const Appbar = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          paddingRight: 0,
         }}
       >
         <h3>Motion</h3>
@@ -33,6 +34,8 @@ const FullBleed = styled('div', {
 const IconButton = styled('button', {
   paddingTop: 'var(--padding)',
   paddingBottom: 'var(--padding)',
+  paddingLeft: 'var(--padding)',
+  paddingRight: 'var(--padding)',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
