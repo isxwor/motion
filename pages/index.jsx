@@ -115,7 +115,7 @@ const Home = () => {
 };
 
 const Grid = styled('div', {
-  '--appbar-height': '40px', // computed value
+  '--appbar-height': '45.325px',
 
   marginTop: 'var(--padding)',
   marginBottom: 'var(--padding)',
@@ -123,6 +123,9 @@ const Grid = styled('div', {
   display: 'grid',
   gap: 'var(--padding)',
   '@media screen and (max-width: 579px)': {
+    // making grid container little larger on mobile to make
+    // address bar on safari disappear
+    '--appbar-height': '42px',
     gridTemplateRows: '1fr 1fr',
   },
   '@media screen and (min-width: 580px)': {
