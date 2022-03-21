@@ -1,4 +1,4 @@
-const findObjectKey = (object, value) =>
+const findObjectKey = (object: Object, value: string | number) =>
   Object.keys(object).find((key) => object[key] === value);
 
 export default findObjectKey;
