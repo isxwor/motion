@@ -37,7 +37,8 @@
         "variables": true
       }
     ],
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }]
   },
   "settings": {
     "import/resolver": {
