@@ -14,7 +14,7 @@ const Range = ({
   const percent = ((value - min) / (max - min)) * 100;
 
   return (
-    <Root $sx={sx}>
+    <Root $style={sx}>
       <LabelWrapper>
         <label htmlFor={id}>{label}</label>
         <Value>
@@ -36,12 +36,11 @@ const Range = ({
   );
 };
 
-const Root = styled('div', ({ $sx }) => ({
+const Root = styled('div', {
   display: 'flex',
   gap: 'var(--padding)',
   flexDirection: 'column',
-  ...$sx,
-}));
+});
 
 const LabelWrapper = styled('div', {
   display: 'flex',

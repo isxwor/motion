@@ -90,7 +90,7 @@ const Home = () => {
       >
         <Shape
           $shape={currentShape}
-          $sx={{
+          $style={{
             position: 'absolute',
             ...(isScaleAnimation && scaleStyles),
             ...(isRotateAnimation && rotateStyles),

@@ -4,7 +4,7 @@ const Tab = ({ isActive, disabled, onClick, sx, children }) => (
   <Root
     type='button'
     $isActive={isActive}
-    $sx={sx}
+    $style={sx}
     $disabled={disabled}
     disabled={disabled}
     onClick={onClick}
@@ -13,7 +13,7 @@ const Tab = ({ isActive, disabled, onClick, sx, children }) => (
   </Root>
 );
 
-const Root = styled('button', ({ $isActive, $disabled, $sx }) => ({
+const Root = styled('button', ({ $isActive, $disabled }) => ({
   paddingTop: '.5rem',
   paddingBottom: '.5rem',
   width: '100%',
@@ -27,7 +27,6 @@ const Root = styled('button', ({ $isActive, $disabled, $sx }) => ({
   borderTopRightRadius: '.5em',
   borderBottomRightRadius: '.5em',
   cursor: $disabled ? 'not-allowed' : 'pointer',
-  ...$sx,
 }));
 
 export default Tab;

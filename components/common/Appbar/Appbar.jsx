@@ -11,7 +11,7 @@ const Appbar = () => {
   return (
     <FullBleed>
       <Container
-        $sx={{
+        $style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
