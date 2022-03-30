@@ -10,6 +10,7 @@ const Appbar: FC = () => {
   const toggleAnimation = useAnimationStore((state) => state.toggleAnimation);
 
   return (
+    // eslint-disable-next-line no-use-before-define
     <FullBleed>
       <Container
         $style={{
@@ -20,6 +21,7 @@ const Appbar: FC = () => {
         }}
       >
         <h3>Motion</h3>
+        {/* eslint-disable-next-line no-use-before-define */}
         <IconButton type='button' onClick={toggleAnimation}>
           {isAnimating ? <Pause /> : <Play />}
         </IconButton>

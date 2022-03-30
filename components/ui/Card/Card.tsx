@@ -2,14 +2,21 @@ import { FC } from 'react';
 
 import { styled, StyleObject, StyletronComponent } from 'styletron-react';
 
+const mapElevationToBackground = {
+  0: 'var(--color-background-card)',
+  1: 'var(--color-background-card-elevated)',
+};
+
+type Elevation = keyof typeof mapElevationToBackground;
+
 interface CardProps {
-  elevation: number;
+  elevation: Elevation;
   title: string;
-  sx: StyleObject;
+  sx?: StyleObject;
 }
 
 interface StyledCardProps {
-  $elevation: number;
+  $elevation: Elevation;
 }
 
 const Card: FC<CardProps> = ({ elevation, title, sx, children }) => (
@@ -21,9 +28,8 @@ const Card: FC<CardProps> = ({ elevation, title, sx, children }) => (
   </Root>
 );
 
-const mapElevationToBackground = {
-  0: 'var(--color-background-card)',
-  1: 'var(--color-background-card-elevated)',
+Card.defaultProps = {
+  sx: {},
 };
 
 const Root: StyletronComponent<StyledCardProps> = styled(

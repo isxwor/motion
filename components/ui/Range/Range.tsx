@@ -8,8 +8,8 @@ interface RangeProps {
   id: string;
   valuePostfix?: string;
   value: number;
-  min: number;
-  max: number;
+  min?: number;
+  max?: number;
   step: number;
   // eslint-disable-next-line no-unused-vars
   handleOnChange: (value: number) => void;
@@ -19,8 +19,8 @@ interface RangeProps {
 const Range: FC<RangeProps> = ({
   label,
   id,
-  min = 0,
-  max = 100,
+  min,
+  max,
   step,
   value,
   valuePostfix,
@@ -54,6 +54,8 @@ const Range: FC<RangeProps> = ({
 
 Range.defaultProps = {
   valuePostfix: '',
+  min: 0,
+  max: 100,
   sx: {},
 };
 

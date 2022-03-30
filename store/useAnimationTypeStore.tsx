@@ -7,7 +7,7 @@ const ANIMATION_TYPES = {
   rotate: 'ROTATE',
 };
 
-type State = keyof typeof ANIMATION_TYPES;
+export type State = keyof typeof ANIMATION_TYPES;
 
 const useAnimationTypeStore = create(
   combine(
