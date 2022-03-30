@@ -1,17 +1,17 @@
-import { styled } from 'styletron-react';
+import { styled, StyleObject } from 'styletron-react';
 
 import { Container } from '@components/ui';
 import { Play, Pause } from '@components/icons';
 import { useAnimationStore } from '@store/useAnimationStore';
 import { FC } from 'react';
 
-const Appbar: FC = () => {
+const Appbar: FC<{ sx?: StyleObject }> = ({ sx }) => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
   const toggleAnimation = useAnimationStore((state) => state.toggleAnimation);
 
   return (
     // eslint-disable-next-line no-use-before-define
-    <FullBleed>
+    <FullBleed $style={sx}>
       <Container
         $style={{
           display: 'flex',
@@ -28,6 +28,10 @@ const Appbar: FC = () => {
       </Container>
     </FullBleed>
   );
+};
+
+Appbar.defaultProps = {
+  sx: {},
 };
 
 const FullBleed = styled('div', {
