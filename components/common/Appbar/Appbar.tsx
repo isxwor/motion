@@ -3,8 +3,9 @@ import { styled } from 'styletron-react';
 import { Container } from '@components/ui';
 import { Play, Pause } from '@components/icons';
 import { useAnimationStore } from '@store/useAnimationStore';
+import { FC } from 'react';
 
-const Appbar = () => {
+const Appbar: FC = () => {
   const isAnimating = useAnimationStore((state) => state.isAnimating);
   const toggleAnimation = useAnimationStore((state) => state.toggleAnimation);
 
