@@ -90,11 +90,14 @@ const Home = () => {
       >
         <Shape
           $shape={currentShape}
-          $style={{
-            position: 'absolute',
-            ...(isScaleAnimation && scaleStyles),
-            ...(isRotateAnimation && rotateStyles),
-          }}
+          $style={
+            {
+              position: 'absolute',
+              ...(isScaleAnimation && scaleStyles),
+              ...(isRotateAnimation && rotateStyles),
+            } as any
+            // FIXME: fix types ^^^
+          }
           onAnimationEnd={stopAnimation}
         />
       </Card>
