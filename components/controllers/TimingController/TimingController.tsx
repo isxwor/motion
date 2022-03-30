@@ -24,12 +24,20 @@ const TimingController = () => {
 
   return (
     <Card elevation={1} title='Timing'>
+      {/* eslint-disable-next-line no-use-before-define */}
       <Label>
         <p>Repeat</p>
+        {/* eslint-disable-next-line no-use-before-define */}
         <LableValue>{repeat}</LableValue>
       </Label>
+      {/**
+       *
+       * TODO: change this to button group and button component
+       *
+       */}
       <TabGroup>
         <Tab
+          isActive={false}
           onClick={decrementRepeat}
           disabled={repeat < 2}
           sx={{
@@ -44,6 +52,7 @@ const TimingController = () => {
           -
         </Tab>
         <Tab
+          isActive={false}
           onClick={incrementRepeat}
           sx={{
             borderTopLeftRadius: 'none',
@@ -56,7 +65,9 @@ const TimingController = () => {
           +
         </Tab>
       </TabGroup>
+      {/* ^^^^^^^^^^^^^ */}
 
+      {/* eslint-disable-next-line no-use-before-define */}
       <Label>
         <p>Autoreverses</p>
         <Toggle checked={autoreverse} onClickHandler={toggleAutoreverse} />

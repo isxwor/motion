@@ -1,9 +1,20 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
 import { Provider as StyletronProvider } from 'styletron-react';
+import { Server, Sheet } from 'styletron-engine-atomic';
 import styletron from '@lib/styletron';
 
-class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+type Props = {
+  stylesheets: Sheet[];
+};
+
+class MyDocument extends Document<Props> {
+  static async getInitialProps(ctx: DocumentContext) {
     const renderPage = () =>
       ctx.renderPage({
         enhanceApp: (App) => (props) =>
@@ -15,7 +26,7 @@ class MyDocument extends Document {
       });
 
     const initialProps = await Document.getInitialProps({ ...ctx, renderPage });
-    const stylesheets = styletron.getStylesheets() || [];
+    const stylesheets = (styletron as Server).getStylesheets() || [];
     return { ...initialProps, stylesheets };
   }
 

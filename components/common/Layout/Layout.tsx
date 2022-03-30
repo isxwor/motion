@@ -1,10 +1,12 @@
 import { styled } from 'styletron-react';
 
 import { Appbar } from '@components/common';
+import { FC } from 'react';
 
-const Layout = ({ children }) => (
+const Layout: FC = ({ children }) => (
   <>
     <Appbar />
+    {/* eslint-disable-next-line no-use-before-define */}
     <Content>{children}</Content>
   </>
 );
