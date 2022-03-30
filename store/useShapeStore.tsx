@@ -6,7 +6,7 @@ const SHAPES = {
   circle: 'CIRCLE',
 };
 
-type State = keyof typeof SHAPES;
+export type State = keyof typeof SHAPES;
 
 const useShapeStore = create(
   combine(

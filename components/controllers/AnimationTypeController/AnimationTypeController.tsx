@@ -4,6 +4,7 @@ import {
   ANIMATION_TYPES,
   useAnimationTypeStore,
 } from '@store/useAnimationTypeStore';
+import type { State as AnimationTypeState } from '@store/useAnimationTypeStore';
 import { useScaleFactorStore } from '@store/useScaleFactorStore';
 import { useRotateStore } from '@store/useRotateStore';
 import findObjectKey from '@lib/find-object-key';
@@ -29,7 +30,7 @@ const AnimationTypeController = () => {
           <Tab
             key={type}
             isActive={findObjectKey(ANIMATION_TYPES, animationType) === type}
-            onClick={() => setAnimationType(type)}
+            onClick={() => setAnimationType(type as AnimationTypeState)}
           >
             {type}
           </Tab>

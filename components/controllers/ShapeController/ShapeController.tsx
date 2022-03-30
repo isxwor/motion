@@ -1,5 +1,6 @@
 import { Card, TabGroup, Tab } from '@components/ui';
 import { SHAPES, useShapeStore } from '@store/useShapeStore';
+import type { State as ShapeState } from '@store/useShapeStore';
 import findObjectKey from '@lib/find-object-key';
 
 const ShapeController = () => {
@@ -13,7 +14,7 @@ const ShapeController = () => {
           <Tab
             key={shape}
             isActive={findObjectKey(SHAPES, currentShape) === shape}
-            onClick={() => setCurrentShape(shape)}
+            onClick={() => setCurrentShape(shape as ShapeState)}
           >
             {shape}
           </Tab>
