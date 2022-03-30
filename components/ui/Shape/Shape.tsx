@@ -1,3 +1,4 @@
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { styled, StyletronComponent } from 'styletron-react';
 
 const mapShapeToBorderStyle = {
@@ -5,7 +6,8 @@ const mapShapeToBorderStyle = {
   CIRCLE: '50%',
 };
 
-interface ShapeProps {
+interface ShapeProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   $shape: 'SQUARE' | 'CIRCLE';
 }
 
@@ -13,8 +15,7 @@ const Shape: StyletronComponent<ShapeProps> = styled('div', ({ $shape }) => ({
   height: '5em',
   width: '5em',
   background: 'var(--color-primary)',
-  borderRadius: mapShapeToBorderStyle[$shape] || mapShapeToBorderStyle.SQUARE,
-  // this will be dynamically generated in future
+  borderRadius: mapShapeToBorderStyle[$shape],
   transition: '200ms border-radius ease',
 }));
 

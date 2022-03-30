@@ -10,8 +10,8 @@ const mapElevationToBackground = {
 type Elevation = keyof typeof mapElevationToBackground;
 
 interface CardProps {
-  elevation: Elevation;
-  title: string;
+  elevation?: Elevation;
+  title?: string;
   sx?: StyleObject;
 }
 
@@ -29,6 +29,8 @@ const Card: FC<CardProps> = ({ elevation, title, sx, children }) => (
 );
 
 Card.defaultProps = {
+  elevation: 0,
+  title: '',
   sx: {},
 };
 
@@ -40,8 +42,7 @@ const Root: StyletronComponent<StyledCardProps> = styled(
     paddingLeft: 'var(--padding)',
     paddingRight: 'var(--padding)',
     borderRadius: '1em',
-    background:
-      mapElevationToBackground[$elevation] || mapElevationToBackground[0],
+    background: mapElevationToBackground[$elevation],
   })
 );
 

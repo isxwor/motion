@@ -7,14 +7,16 @@ const SHAPES = {
 };
 
 export type State = keyof typeof SHAPES;
+type Value = 'SQUARE' | 'CIRCLE';
 
 const useShapeStore = create(
   combine(
     {
-      currentShape: SHAPES.square,
+      currentShape: SHAPES.square as Value,
     },
     (set) => ({
-      setCurrentShape: (shape: State) => set({ currentShape: SHAPES[shape] }),
+      setCurrentShape: (shape: State) =>
+        set({ currentShape: SHAPES[shape] as Value }),
     })
   )
 );
