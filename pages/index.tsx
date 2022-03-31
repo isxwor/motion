@@ -8,10 +8,7 @@ import {
   TimingController,
 } from '@components/controllers';
 import { useAnimationStore } from '@store/useAnimationStore';
-import {
-  ANIMATION_TYPES,
-  useAnimationTypeStore,
-} from '@store/useAnimationTypeStore';
+import { useAnimationTypeStore } from '@store/useAnimationTypeStore';
 import { useShapeStore } from '@store/useShapeStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
 import { useSpeedStore } from '@store/useSpeedStore';
@@ -34,8 +31,8 @@ const Home = () => {
   // TODO: add infinite option
   const repeat = useRepeatStore((state) => state.repeat);
 
-  const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
-  const isRotateAnimation = animationType === ANIMATION_TYPES.rotate;
+  const isScaleAnimation = animationType === 'scale';
+  const isRotateAnimation = animationType === 'rotate';
 
   const baseDuration = 1;
   const translate = `translate(-50%, -50%)`;

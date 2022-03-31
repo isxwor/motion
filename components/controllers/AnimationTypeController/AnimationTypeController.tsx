@@ -1,13 +1,11 @@
 import { Card, TabGroup, Tab, Range } from '@components/ui';
 
-import {
-  ANIMATION_TYPES,
-  useAnimationTypeStore,
-} from '@store/useAnimationTypeStore';
-import type { State as AnimationTypeState } from '@store/useAnimationTypeStore';
+import { useAnimationTypeStore } from '@store/useAnimationTypeStore';
+import type { AnimationT } from '@store/useAnimationTypeStore';
 import { useScaleFactorStore } from '@store/useScaleFactorStore';
 import { useRotateStore } from '@store/useRotateStore';
-import findObjectKey from '@lib/find-object-key';
+
+const ANIMATION_TYPES: AnimationT[] = ['scale', 'slide', 'rotate'];
 
 const AnimationTypeController = () => {
   const animationType = useAnimationTypeStore((state) => state.animationType);
@@ -20,17 +18,17 @@ const AnimationTypeController = () => {
   const rotate = useRotateStore((state) => state.rotate);
   const setRotate = useRotateStore((state) => state.setRotate);
 
-  const isScaleAnimation = animationType === ANIMATION_TYPES.scale;
-  const isRotateAnimation = animationType === ANIMATION_TYPES.rotate;
+  const isScaleAnimation = animationType === 'scale';
+  const isRotateAnimation = animationType === 'rotate';
 
   return (
     <Card elevation={1} title='Animation Type'>
       <TabGroup>
-        {Object.keys(ANIMATION_TYPES).map((type) => (
+        {ANIMATION_TYPES.map((type) => (
           <Tab
             key={type}
-            isActive={findObjectKey(ANIMATION_TYPES, animationType) === type}
-            onClick={() => setAnimationType(type as AnimationTypeState)}
+            isActive={animationType === type}
+            onClick={() => setAnimationType(type)}
           >
             {type}
           </Tab>
