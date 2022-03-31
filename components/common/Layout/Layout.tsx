@@ -1,5 +1,3 @@
-import { styled } from 'styletron-react';
-
 import { Appbar } from '@components/common';
 import { FC } from 'react';
 
@@ -14,11 +12,8 @@ const Layout: FC = ({ children }) => (
         },
       }}
     />
-    {/* eslint-disable-next-line no-use-before-define */}
-    <Content>{children}</Content>
+    {children}
   </>
 );
-
-const Content = styled('div', {});
 
 export default Layout;
