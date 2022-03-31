@@ -1,14 +1,16 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { styled, StyletronComponent } from 'styletron-react';
 
-const mapShapeToBorderStyle = {
-  SQUARE: '1em',
-  CIRCLE: '50%',
+import type { ShapeT } from '@store/useShapeStore';
+
+const mapShapeToBorderStyle: Record<ShapeT, string> = {
+  square: '1em',
+  circle: '50%',
 };
 
 interface ShapeProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-  $shape: 'SQUARE' | 'CIRCLE';
+  $shape: ShapeT;
 }
 
 const Shape: StyletronComponent<ShapeProps> = styled('div', ({ $shape }) => ({

@@ -1,7 +1,8 @@
 import { Card, TabGroup, Tab } from '@components/ui';
-import { SHAPES, useShapeStore } from '@store/useShapeStore';
-import type { State as ShapeState } from '@store/useShapeStore';
-import findObjectKey from '@lib/find-object-key';
+import { useShapeStore } from '@store/useShapeStore';
+import type { ShapeT } from '@store/useShapeStore';
+
+const SHAPES: ShapeT[] = ['square', 'circle'];
 
 const ShapeController = () => {
   const currentShape = useShapeStore((state) => state.currentShape);
@@ -10,11 +11,11 @@ const ShapeController = () => {
   return (
     <Card elevation={1} title='Shape'>
       <TabGroup>
-        {Object.keys(SHAPES).map((shape) => (
+        {SHAPES.map((shape) => (
           <Tab
             key={shape}
-            isActive={findObjectKey(SHAPES, currentShape) === shape}
-            onClick={() => setCurrentShape(shape as ShapeState)}
+            isActive={currentShape === shape}
+            onClick={() => setCurrentShape(shape)}
           >
             {shape}
           </Tab>

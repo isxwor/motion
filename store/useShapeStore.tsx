@@ -1,24 +1,17 @@
 import create from 'zustand';
 import { combine } from 'zustand/middleware';
 
-const SHAPES = {
-  square: 'SQUARE',
-  circle: 'CIRCLE',
-};
-
-export type State = keyof typeof SHAPES;
-type Value = 'SQUARE' | 'CIRCLE';
+export type ShapeT = 'square' | 'circle';
 
 const useShapeStore = create(
   combine(
     {
-      currentShape: SHAPES.square as Value,
+      currentShape: 'square' as ShapeT,
     },
     (set) => ({
-      setCurrentShape: (shape: State) =>
-        set({ currentShape: SHAPES[shape] as Value }),
+      setCurrentShape: (shape: ShapeT) => set({ currentShape: shape }),
     })
   )
 );
 
-export { SHAPES, useShapeStore };
+export { useShapeStore };
