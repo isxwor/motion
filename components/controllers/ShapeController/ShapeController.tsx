@@ -1,10 +1,13 @@
-import { Card, TabGroup, Tab } from '@components/ui';
-import { useShapeStore } from '@store/useShapeStore';
+import { FC } from 'react';
+
+import { Card, Tab, TabGroup } from '@components/ui';
+
 import type { ShapeT } from '@store/useShapeStore';
+import { useShapeStore } from '@store/useShapeStore';
 
 const SHAPES: ShapeT[] = ['square', 'circle'];
 
-const ShapeController = () => {
+const ShapeController: FC = () => {
   const currentShape = useShapeStore((state) => state.currentShape);
   const setCurrentShape = useShapeStore((state) => state.setCurrentShape);
 

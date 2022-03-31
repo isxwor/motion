@@ -1,13 +1,15 @@
-import { Card, TabGroup, Tab, Range } from '@components/ui';
+import { FC } from 'react';
 
-import { useAnimationTypeStore } from '@store/useAnimationTypeStore';
+import { Card, Range, Tab, TabGroup } from '@components/ui';
+
 import type { AnimationT } from '@store/useAnimationTypeStore';
-import { useScaleFactorStore } from '@store/useScaleFactorStore';
+import { useAnimationTypeStore } from '@store/useAnimationTypeStore';
 import { useRotateStore } from '@store/useRotateStore';
+import { useScaleFactorStore } from '@store/useScaleFactorStore';
 
 const ANIMATION_TYPES: AnimationT[] = ['scale', 'slide', 'rotate'];
 
-const AnimationTypeController = () => {
+const AnimationTypeController: FC = () => {
   const animationType = useAnimationTypeStore((state) => state.animationType);
   const setAnimationType = useAnimationTypeStore(
     (state) => state.setAnimationType

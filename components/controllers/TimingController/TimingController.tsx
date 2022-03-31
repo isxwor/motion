@@ -1,12 +1,15 @@
+import { FC } from 'react';
+
 import { styled } from 'styletron-react';
 
 import { Card, TabGroup, Tab, Range, Toggle } from '@components/ui';
+
 import { useRepeatStore } from '@store/useRepeatStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
 import { useSpeedStore } from '@store/useSpeedStore';
 import { useDelayStore } from '@store/useDelayStore';
 
-const TimingController = () => {
+const TimingController: FC = () => {
   const repeat = useRepeatStore((state) => state.repeat);
   const incrementRepeat = useRepeatStore((state) => state.incrementRepeat);
   const decrementRepeat = useRepeatStore((state) => state.decrementRepeat);
