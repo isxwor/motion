@@ -2,7 +2,14 @@ import { FC } from 'react';
 
 import { styled } from 'styletron-react';
 
-import { Card, TabGroup, Tab, Range, Toggle } from '@components/ui';
+import {
+  Card,
+  // temporary until ButtonGroup is implemented
+  TabGroup as ButtonGroup,
+  Range,
+  Toggle,
+  Button,
+} from '@components/ui';
 
 import { useRepeatStore } from '@store/useRepeatStore';
 import { useAutoreverseStore } from '@store/useAutoreverseStore';
@@ -33,17 +40,12 @@ const TimingController: FC = () => {
         {/* eslint-disable-next-line no-use-before-define */}
         <LableValue>{repeat}</LableValue>
       </Label>
-      {/**
-       *
-       * TODO: change this to button group and button component
-       *
-       */}
-      <TabGroup>
-        <Tab
-          isActive={false}
+      <ButtonGroup>
+        <Button
           onClick={decrementRepeat}
           disabled={repeat < 2}
-          sx={{
+          $style={{
+            width: '100%',
             borderTopRightRadius: 'none',
             borderBottomRightRadius: 'none',
             borderRight: '.15em solid var(--color-background-card-elevated)',
@@ -53,11 +55,11 @@ const TimingController: FC = () => {
           }}
         >
           -
-        </Tab>
-        <Tab
-          isActive={false}
+        </Button>
+        <Button
           onClick={incrementRepeat}
-          sx={{
+          $style={{
+            width: '100%',
             borderTopLeftRadius: 'none',
             borderBottomLeftRadius: 'none',
             ':hover': {
@@ -66,10 +68,8 @@ const TimingController: FC = () => {
           }}
         >
           +
-        </Tab>
-      </TabGroup>
-      {/* ^^^^^^^^^^^^^ */}
-
+        </Button>
+      </ButtonGroup>
       {/* eslint-disable-next-line no-use-before-define */}
       <Label>
         <p>Autoreverses</p>
