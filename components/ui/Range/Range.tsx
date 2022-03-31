@@ -33,10 +33,7 @@ const Range: FC<RangeProps> = ({
     <Root $style={sx}>
       <LabelWrapper>
         <label htmlFor={id}>{label}</label>
-        <Value>
-          {value}
-          {valuePostfix}
-        </Value>
+        <Value>{`${value}${valuePostfix}`}</Value>
       </LabelWrapper>
       <Input
         type='range'
