@@ -7,7 +7,8 @@ import { useAnimationTypeStore } from '@store/useAnimationTypeStore';
 import { useRotateStore } from '@store/useRotateStore';
 import { useScaleFactorStore } from '@store/useScaleFactorStore';
 
-const ANIMATION_TYPES: AnimationT[] = ['scale', 'slide', 'rotate'];
+// const ANIMATION_TYPES: AnimationT[] = ['scale', 'slide', 'rotate'];
+const ANIMATION_TYPES: AnimationT[] = ['scale', 'rotate'];
 
 const AnimationTypeController: FC = () => {
   const animationType = useAnimationTypeStore((state) => state.animationType);
